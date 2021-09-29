@@ -20,7 +20,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/openrelayxyz/cardinal-evm/common/hexutil"
+	"github.com/openrelayxyz/cardinal-types/hexutil"
 )
 
 type MyType [5]byte
