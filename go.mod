@@ -1,3 +1,3 @@
-module github.com/openrelayxyz/cardinal-storage
+module github.com/openrelayxyz/cardinal-types
 
 go 1.15
