@@ -118,6 +118,17 @@ func (h *Hash) UnmarshalJSON(input []byte) error {
 	return hexutil.UnmarshalFixedJSON(hashT, input, h[:])
 }
 
+func (h *Hash) UnmarshalYAML(fn func(val interface{}) error) error {
+	var input []byte
+	err := fn(&input)
+	if err != nil { return err }
+	return hexutil.UnmarshalFixedText("Hash", input, h[:])
+}
+
+// MarshalYAML returns a hex string for a hash value
+func (h *Hash) MarshalYAML() (interface{}, error) {
+	return h.String(), nil
+}
 // MarshalText returns the hex representation of h.
 func (h Hash) MarshalText() ([]byte, error) {
 	return hexutil.Bytes(h[:]).MarshalText()
