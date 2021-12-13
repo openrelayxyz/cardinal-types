@@ -21,6 +21,9 @@ func NewMajorTimer(name string) metrics.Timer {
 func NewMajorMeter(name string) metrics.Meter {
   return metrics.NewRegisteredMeter(name, MajorRegistry)
 }
+func NewMajorHistogram(name string) metrics.Histogram {
+  return metrics.NewRegisteredHistogram(name, MajorRegistry, metrics.NewExpDecaySample(1028, 0.015))
+}
 func NewMinorGauge(name string) metrics.Gauge {
   return metrics.NewRegisteredGauge(name, MinorRegistry)
 }
@@ -32,6 +35,9 @@ func NewMinorTimer(name string) metrics.Timer {
 }
 func NewMinorMeter(name string) metrics.Meter {
   return metrics.NewRegisteredMeter(name, MinorRegistry)
+}
+func NewMinorHistogram(name string) metrics.Histogram {
+  return metrics.NewRegisteredHistogram(name, MinorRegistry, metrics.NewExpDecaySample(1028, 0.015))
 }
 
 type MetricsAPI struct {}
