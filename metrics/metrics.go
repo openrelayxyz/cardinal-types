@@ -48,3 +48,20 @@ func (api *MetricsAPI) Metrics() []metrics.Registry {
     MajorRegistry,
   }
 }
+
+type clearable interface {
+  Clear()
+}
+
+func clear(name string, m interface{}) {
+  switch v := m.(type) {
+  case clearable:
+    v.Clear()
+  default:
+  }
+}
+
+func Clear() {
+  MinorRegistry.Each(clear)
+  MajorRegistry.Each(clear)
+}
